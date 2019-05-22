@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Button, Text, View, ScrollView } from "react-native";
+import {
+  Button,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  FlatList
+} from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import { Font } from "expo";
 
@@ -37,17 +44,31 @@ class Home extends Component {
   render() {
     return (
       <View style={{ height: "100%", width: "100%" }}>
-        <Text>Home is working okay!</Text>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate("PaxDetails");
+          }}
+        >
+          <Text>Start new Load Sheet</Text>
+        </TouchableOpacity>
+
+        <FlatList
+          // THIS NEEDS TO BE LOADED FROM STORAGE
+          data={require("../../testLoadModelList")}
+          //  THIS SHOULD BE ITS OWN COMPONENT
+          renderItem={({ item }) => (
+            <View>
+              <Text>{item.flightDetails.date}</Text>
+              <Text>{item.flightDetails.pilot}</Text>
+              <Text>------------------------------</Text>
+            </View>
+          )}
+        />
+
         <Button
           title="Go to Config"
           onPress={() => {
             this.props.navigation.navigate("FlightConfig");
-          }}
-        />
-        <Button
-          title="Go to Pax Details"
-          onPress={() => {
-            this.props.navigation.navigate("PaxDetails");
           }}
         />
       </View>
