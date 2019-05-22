@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { Button, Text, View, ScrollView } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import { Font } from "expo";
 
@@ -36,8 +36,20 @@ class Home extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{ height: "100%", width: "100%" }}>
         <Text>Home is working okay!</Text>
+        <Button
+          title="Go to Config"
+          onPress={() => {
+            this.props.navigation.navigate("FlightConfig");
+          }}
+        />
+        <Button
+          title="Go to Pax Details"
+          onPress={() => {
+            this.props.navigation.navigate("PaxDetails");
+          }}
+        />
       </View>
     );
   }
