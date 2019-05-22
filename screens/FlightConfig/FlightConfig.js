@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 class FlightConfig extends Component {
   constructor(props) {
