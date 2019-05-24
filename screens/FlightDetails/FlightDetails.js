@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 
 import Header from "../../components/Header";
-import Theme from "../../theme";
+import Theme from "../../Theme";
 
 class FlightDetails extends Component {
   static navigationOptions = {

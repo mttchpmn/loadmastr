@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, Text } from "react-native";
 import { Font } from "expo";
 
-import Theme from "../theme";
+import Theme from "../Theme";
 
 class Header extends Component {
   constructor(props) {
