@@ -16,7 +16,9 @@ import FlightDetails from "../FlightDetails/FlightDetails";
 import PaxDetails from "../PaxDetails/PaxDetails";
 import FlightTotals from "../FlightTotals/FlightTotals";
 
-import Theme from "../../theme";
+import Theme from "../../Theme";
+import Style from "../../Style";
+import LoadsheetItem from "./LoadsheetItem";
 
 class Home extends Component {
   static navigationOptions = {
@@ -43,34 +45,91 @@ class Home extends Component {
 
   render() {
     return (
-      <View style={{ height: "100%", width: "100%" }}>
-        <TouchableOpacity
-          onPress={() => {
-            this.props.navigation.navigate("PaxDetails");
+      <View style={Style.flexContainer}>
+        <View
+          style={{
+            width: "100%",
+            height: "90%",
+            backgroundColor: Theme.background
           }}
         >
-          <Text>Start new Load Sheet</Text>
-        </TouchableOpacity>
+          <FlatList
+            // THIS NEEDS TO BE LOADED FROM STORAGE
+            data={require("../../testLoadModelList")}
+            //  THIS SHOULD BE ITS OWN COMPONENT
+            renderItem={({ item }) => (
+              <LoadsheetItem key={item.date} loadsheetData={item} />
+            )}
+          />
+        </View>
 
-        <FlatList
-          // THIS NEEDS TO BE LOADED FROM STORAGE
-          data={require("../../testLoadModelList")}
-          //  THIS SHOULD BE ITS OWN COMPONENT
-          renderItem={({ item }) => (
-            <View>
-              <Text>{item.flightDetails.date}</Text>
-              <Text>{item.flightDetails.pilot}</Text>
-              <Text>------------------------------</Text>
+        <View style={{ height: "10%", backgroundColor: Theme.background }}>
+          <View style={Style.flexRow}>
+            <View
+              style={{
+                width: "65%",
+                height: "80%",
+                borderRadius: 5,
+                backgroundColor: Theme.primary
+              }}
+            >
+              <TouchableOpacity
+                onPress={() => {
+                  this.props.navigation.navigate("PaxDetails");
+                }}
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  justifyContent: "center"
+                }}
+              >
+                <Text
+                  style={{
+                    color: Theme.white,
+                    textAlign: "center",
+                    fontSize: 14,
+                    fontWeight: "bold"
+                  }}
+                >
+                  New Load Sheet
+                </Text>
+              </TouchableOpacity>
             </View>
-          )}
-        />
 
-        <Button
-          title="Go to Config"
-          onPress={() => {
-            this.props.navigation.navigate("FlightConfig");
-          }}
-        />
+            <View
+              style={{
+                width: "30%",
+                height: "80%",
+                borderColor: Theme.divider,
+                borderWidth: 1,
+                borderRadius: 5,
+                backgroundColor: Theme.background
+              }}
+            >
+              <TouchableOpacity
+                onPress={() => {
+                  this.props.navigation.navigate("FlightConfig");
+                }}
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  justifyContent: "center"
+                }}
+              >
+                <Text
+                  style={{
+                    color: Theme.primary,
+                    textAlign: "center",
+                    fontSize: 14,
+                    fontWeight: "bold"
+                  }}
+                >
+                  Flight Config
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
       </View>
     );
   }
