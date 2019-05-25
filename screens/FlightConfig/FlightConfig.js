@@ -7,6 +7,7 @@ import Style from "../../Style";
 import { LoadDataContext } from "../../App";
 import ConfigInput from "./ConfigInput";
 import PrimaryButton from "../../components/PrimaryButton";
+import Title from "../../components/Title";
 
 class FlightConfig extends Component {
   static navigationOptions = {
@@ -24,17 +25,7 @@ class FlightConfig extends Component {
   render() {
     return (
       <View>
-        <View style={{ marginVertical: 5 }}>
-          <Text
-            style={{
-              textAlign: "center",
-              fontWeight: "bold",
-              fontSize: 20
-            }}
-          >
-            Aircraft Configuration
-          </Text>
-        </View>
+        <Title label={"Aircraft Configuration"} />
         <LoadDataContext.Consumer>
           {data => (
             <View>
@@ -132,7 +123,7 @@ class FlightConfig extends Component {
                 <PrimaryButton
                   label={"Save Configuration"}
                   onPress={() => {
-                    data.saveData();
+                    data.saveAircraftConfig();
                     this.props.navigation.navigate("Home");
                   }}
                 />

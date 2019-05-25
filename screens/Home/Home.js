@@ -20,6 +20,7 @@ import Theme from "../../Theme";
 import Style from "../../Style";
 import LoadsheetItem from "./LoadsheetItem";
 import { LoadDataContext } from "../../App";
+import Title from "../../components/Title";
 
 class Home extends Component {
   static navigationOptions = {
@@ -47,9 +48,6 @@ class Home extends Component {
   render() {
     return (
       <View style={Style.flexContainer}>
-        <LoadDataContext.Consumer>
-          {value => <Text>REGO: {value.config_aircraftRego}</Text>}
-        </LoadDataContext.Consumer>
         <View
           style={{
             width: "100%",
@@ -57,10 +55,12 @@ class Home extends Component {
             backgroundColor: Theme.background
           }}
         >
+          <Title label={"Flight History"} />
           <FlatList
             // THIS NEEDS TO BE LOADED FROM STORAGE
             data={require("../../testLoadModelList")}
             //  THIS SHOULD BE ITS OWN COMPONENT
+            keyExtractor={(item, index) => `${index}-${item.date}`}
             renderItem={({ item }) => (
               <LoadsheetItem key={item.date} loadsheetData={item} />
             )}
@@ -128,7 +128,7 @@ class Home extends Component {
                     fontWeight: "bold"
                   }}
                 >
-                  Flight Config
+                  Aircraft Config
                 </Text>
               </TouchableOpacity>
             </View>
