@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, TextInput, View, ScrollView } from "react-native";
 
 import Header from "../../components/Header";
 import Theme from "../../Theme";
+import { LoadDataContext } from "../../App";
 
 class FlightConfig extends Component {
   static navigationOptions = {
@@ -21,6 +22,19 @@ class FlightConfig extends Component {
     return (
       <View>
         <Text>FlightConfig component is working okay!</Text>
+        <LoadDataContext.Consumer>
+          {data => (
+            <View>
+              <Text>Rego:</Text>
+              <TextInput
+                value={data.config_aircraftRego}
+                onChangeText={text =>
+                  data.updateProp("config_aircraftRego", text)
+                }
+              />
+            </View>
+          )}
+        </LoadDataContext.Consumer>
       </View>
     );
   }

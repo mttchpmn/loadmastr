@@ -19,6 +19,7 @@ import FlightTotals from "../FlightTotals/FlightTotals";
 import Theme from "../../Theme";
 import Style from "../../Style";
 import LoadsheetItem from "./LoadsheetItem";
+import { LoadDataContext } from "../../App";
 
 class Home extends Component {
   static navigationOptions = {
@@ -46,6 +47,9 @@ class Home extends Component {
   render() {
     return (
       <View style={Style.flexContainer}>
+        <LoadDataContext.Consumer>
+          {value => <Text>REGO: {value.config_aircraftRego}</Text>}
+        </LoadDataContext.Consumer>
         <View
           style={{
             width: "100%",
