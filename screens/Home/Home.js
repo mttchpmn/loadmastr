@@ -12,9 +12,7 @@ import { Font } from "expo";
 
 import Header from "../../components/Header";
 import FlightConfig from "../FlightConfig/FlightConfig";
-import FlightDetails from "../FlightDetails/FlightDetails";
-import PaxDetails from "../PaxDetails/PaxDetails";
-import FlightTotals from "../FlightTotals/FlightTotals";
+import Loadsheet from "../Loadsheet/Loadsheet";
 
 import Theme from "../../Theme";
 import Style from "../../Style";
@@ -23,14 +21,6 @@ import { LoadDataContext } from "../../App";
 import Title from "../../components/Title";
 
 class Home extends Component {
-  static navigationOptions = {
-    headerTitle: <Header />,
-    headerStyle: {
-      backgroundColor: Theme.primary
-    },
-    headerTintColor: Theme.white
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -79,7 +69,7 @@ class Home extends Component {
             >
               <TouchableOpacity
                 onPress={() => {
-                  this.props.navigation.navigate("PaxDetails");
+                  this.props.navigation.navigate("Loadsheet");
                 }}
                 style={{
                   height: "100%",
@@ -139,22 +129,28 @@ class Home extends Component {
   }
 }
 
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: Home
+const AppNavigator = createStackNavigator(
+  {
+    Home: {
+      screen: Home
+    },
+    FlightConfig: {
+      screen: FlightConfig
+    },
+    Loadsheet: {
+      screen: Loadsheet
+    }
   },
-  FlightConfig: {
-    screen: FlightConfig
-  },
-  FlightDetails: {
-    screen: FlightDetails
-  },
-  PaxDetails: {
-    screen: PaxDetails
-  },
-  FlightTotals: {
-    screen: FlightTotals
+  {
+    initialRouteName: "Home",
+    defaultNavigationOptions: {
+      headerTitle: <Header />,
+      headerStyle: {
+        backgroundColor: Theme.primary
+      },
+      headerTintColor: Theme.white
+    }
   }
-});
+);
 
 export default createAppContainer(AppNavigator);
