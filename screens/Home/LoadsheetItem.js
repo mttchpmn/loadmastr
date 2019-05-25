@@ -4,7 +4,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import Theme from "../../Theme.js";
 import Style from "../../Style.js";
 
-const LoadsheetItem = ({ loadsheetData }) => {
+const LoadsheetItem = ({ loadsheetData, onPress }) => {
   return (
     <View
       style={{
@@ -16,12 +16,16 @@ const LoadsheetItem = ({ loadsheetData }) => {
         alignSelf: "center"
       }}
     >
-      <TouchableOpacity style={{ height: "100%", width: "100%" }}>
+      <TouchableOpacity
+        style={{ height: "100%", width: "100%" }}
+        onPress={() => onPress()}
+      >
         <View
           style={{
             height: "100%",
             width: "100%",
-            padding: 7,
+            paddingHorizontal: 15,
+            paddingVertical: 5,
             justifyContent: "space-around"
           }}
         >
