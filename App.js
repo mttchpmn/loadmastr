@@ -41,7 +41,7 @@ export default class App extends Component {
     };
 
     this.state = {
-      // DATA
+      // CONFIG
       config_aircraftType: "",
       config_aircraftRego: "ZK-***",
       config_aircraftCapacity: "",
@@ -53,6 +53,12 @@ export default class App extends Component {
 
       config_pilotName: "",
       config_pilotWeight: "", // KG
+
+      // LOADSHEET
+      loadsheet_date: "Today's date",
+      loadsheet_route: "",
+      loadsheet_etd: "",
+      loadsheet_eet: "",
 
       // FUNCTIONS
       updateProp: this.updateProp,
