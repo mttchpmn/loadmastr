@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
+import Icon from "@expo/vector-icons/Ionicons";
 
 import Header from "../../components/Header";
 import Theme from "../../Theme";
+import Title from "../../components/Title";
 
 class FlightTotals extends Component {
   static navigationOptions = {
-    headerTitle: <Header />,
-    headerStyle: {
-      backgroundColor: Theme.primary
-    },
-    headerTintColor: Theme.white
+    tabBarIcon: <Icon name={"md-calculator"} size={35} color={"#fff"} />
   };
 
   constructor(props) {
@@ -20,7 +18,7 @@ class FlightTotals extends Component {
   render() {
     return (
       <View>
-        <Text>FlightTotals component is working okay!</Text>
+        <Title label={"Flight Totals"} />
       </View>
     );
   }
