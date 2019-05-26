@@ -40,12 +40,6 @@ export default class App extends Component {
       }
     };
 
-    this.addPaxToList = () => {
-      let paxList = this.state.loadsheet_pax;
-      paxList.push(this.state.paxSkeleton);
-      this.setState({ loadsheet_pax: paxList });
-    };
-
     this.addNewPaxToList = ({ paxObject }) => {
       let paxList = this.state.loadsheet_pax;
       paxList.push(paxObject);
@@ -73,17 +67,9 @@ export default class App extends Component {
       loadsheet_eet: "",
       loadsheet_pax: [],
 
-      paxSkeleton: {
-        name: "",
-        weight: "",
-        hasInfant: false,
-        infantWeight: ""
-      },
-
       // FUNCTIONS
       updateProp: this.updateProp,
       saveAircraftConfig: this.saveAircraftConfig,
-      addPaxToList: this.addPaxToList,
       addNewPaxToList: this.addNewPaxToList
     };
   }
