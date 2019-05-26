@@ -24,10 +24,11 @@ class PaxDetails extends Component {
       modalOpen: false,
 
       // Empty props of the paxObject skeleton
-      newPaxInfantWeight: "",
-      newPaxWeight: "",
+      newPaxInfantWeight: null,
+      newPaxWeight: null,
       newPaxHasInfant: false,
-      newPaxInfantWeight: ""
+      newPaxInfantName: null,
+      newPaxInfantWeight: null
     };
   }
 
@@ -64,6 +65,7 @@ class PaxDetails extends Component {
                     label={"Weight (KG)"}
                     value={this.state.newPaxWeight}
                     onChange={newPaxWeight => this.setState({ newPaxWeight })}
+                    type={"number-pad"}
                   />
 
                   <View
@@ -89,13 +91,24 @@ class PaxDetails extends Component {
                     </View>
                   </View>
                   {this.state.newPaxHasInfant ? (
-                    <DataInput
-                      label={"Infant Weight"}
-                      value={this.state.newPaxInfantWeight}
-                      onChange={newPaxInfantWeight =>
-                        this.setState({ newPaxInfantWeight })
-                      }
-                    />
+                    <View>
+                      <DataInput
+                        label={"Infant Name"}
+                        value={this.state.newPaxInfantName}
+                        onChange={newPaxInfantName =>
+                          this.setState({ newPaxInfantName })
+                        }
+                      />
+
+                      <DataInput
+                        label={"Infant Weight"}
+                        value={this.state.newPaxInfantWeight}
+                        onChange={newPaxInfantWeight =>
+                          this.setState({ newPaxInfantWeight })
+                        }
+                        type={"number-pad"}
+                      />
+                    </View>
                   ) : null}
                   <PrimaryButton
                     label={"Add to payload"}
@@ -104,10 +117,18 @@ class PaxDetails extends Component {
                       (paxObject.name = this.state.newPaxName),
                         (paxObject.weight = this.state.newPaxWeight),
                         (paxObject.hasInfant = this.state.newPaxHasInfant),
+                        (paxObject.infantName = this.state.newPaxInfantName),
                         (paxObject.infantWeight = this.state.newPaxInfantWeight);
                       console.log("OBJ", paxObject);
                       data.addNewPaxToList({ paxObject });
-                      this.setState({ modalOpen: false });
+                      this.setState({
+                        modalOpen: false,
+                        newPaxName: null,
+                        newPaxWeight: null,
+                        newPaxHasInfant: null,
+                        newPaxInfantName: null,
+                        newPaxInfantWeight: null
+                      });
                     }}
                   />
                 </View>
