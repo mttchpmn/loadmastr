@@ -46,6 +46,50 @@ export default class App extends Component {
       this.setState({ loadsheet_pax: paxList });
     };
 
+    this.getCrewWeight = () => {
+      return (
+        parseInt(this.state.config_pilotWeight, 10) +
+        parseInt(this.state.config_coPilotWeight, 10)
+      );
+    };
+
+    this.getPaxWeight = () => {
+      let totalWeight = 0;
+
+      this.state.loadsheet_pax.map(person => {
+        totalWeight += parseInt(person.weight, 10);
+        if (person.hasInfant) totalWeight += parseInt(person.infantWeight, 10);
+      });
+
+      return totalWeight;
+    };
+
+    this.getZeroFuelWeight = () => {
+      return (
+        this.getCrewWeight() +
+        parseInt(this.state.config_aircraftEmptyWeight, 10) +
+        this.getPaxWeight()
+      );
+    };
+
+    this.getFuelWeight = () => {
+      // TODO - Implement this properly
+      return 108;
+    };
+
+    this.getTakeoffWeight = () => {
+      return this.getZeroFuelWeight() + this.getFuelWeight();
+    };
+
+    this.getFuelBurn = () => {
+      // TODO - Implement this properly
+      return 32;
+    };
+
+    this.getLandingWeight = () => {
+      return this.getTakeoffWeight() - this.getFuelBurn();
+    };
+
     this.state = {
       // CONFIG
       config_aircraftType: "",
@@ -60,17 +104,56 @@ export default class App extends Component {
       config_pilotName: "",
       config_pilotWeight: "", // KG
 
+      config_coPilotName: "",
+      config_coPilotWeight: 0, // KG
+
       // LOADSHEET
       loadsheet_date: "Today's date",
       loadsheet_route: "",
       loadsheet_etd: "",
       loadsheet_eet: "",
-      loadsheet_pax: [],
+      loadsheet_pax: [
+        {
+          name: "John Smith",
+          weight: "88",
+          hasInfant: false,
+          infantName: null,
+          infantWeight: null
+        },
+        {
+          name: "Jane Smith",
+          weight: "55",
+          hasInfant: true,
+          infantName: "Lou Smith",
+          infantWeight: "12"
+        },
+        {
+          name: "Sam Jones",
+          weight: "74",
+          hasInfant: false,
+          infantName: null,
+          infantWeight: null
+        },
+        {
+          name: "Sue Jones",
+          weight: "60",
+          hasInfant: true,
+          infantName: "Jess Jones",
+          infantWeight: "11"
+        }
+      ],
 
       // FUNCTIONS
       updateProp: this.updateProp,
       saveAircraftConfig: this.saveAircraftConfig,
-      addNewPaxToList: this.addNewPaxToList
+      addNewPaxToList: this.addNewPaxToList,
+      getCrewWeight: this.getCrewWeight,
+      getPaxWeight: this.getPaxWeight,
+      getZeroFuelWeight: this.getZeroFuelWeight,
+      getFuelWeight: this.getFuelWeight,
+      getFuelBurn: this.getFuelBurn,
+      getTakeoffWeight: this.getTakeoffWeight,
+      getLandingWeight: this.getLandingWeight
     };
   }
 
