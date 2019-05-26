@@ -94,15 +94,15 @@ export default class App extends Component {
       // CONFIG
       config_aircraftType: "",
       config_aircraftRego: "ZK-***",
-      config_aircraftCapacity: "",
-      config_aircraftFuelType: "",
-      config_aircraftFuelBurn: "", // Litres per Hour
-      config_aircraftEmptyWeight: "0", // KG
-      config_aircraftMaxTakeoffWeight: "0", // KG
-      config_aircraftMaxLandingWeight: "", // KG
+      config_aircraftCapacity: 0, // Number of seats
+      config_aircraftFuelType: "", // AVGAS or JET A1
+      config_aircraftFuelBurn: 0, // Litres per Hour
+      config_aircraftEmptyWeight: 0, // KG
+      config_aircraftMaxTakeoffWeight: 0, // KG
+      config_aircraftMaxLandingWeight: 0, // KG
 
       config_pilotName: "",
-      config_pilotWeight: "", // KG
+      config_pilotWeight: 0, // KG
 
       config_coPilotName: "",
       config_coPilotWeight: 0, // KG
@@ -111,37 +111,8 @@ export default class App extends Component {
       loadsheet_date: "Today's date",
       loadsheet_route: "",
       loadsheet_etd: "",
-      loadsheet_eet: "",
-      loadsheet_pax: [
-        {
-          name: "John Smith",
-          weight: "88",
-          hasInfant: false,
-          infantName: null,
-          infantWeight: null
-        },
-        {
-          name: "Jane Smith",
-          weight: "55",
-          hasInfant: true,
-          infantName: "Lou Smith",
-          infantWeight: "12"
-        },
-        {
-          name: "Sam Jones",
-          weight: "74",
-          hasInfant: false,
-          infantName: null,
-          infantWeight: null
-        },
-        {
-          name: "Sue Jones",
-          weight: "60",
-          hasInfant: true,
-          infantName: "Jess Jones",
-          infantWeight: "11"
-        }
-      ],
+      loadsheet_eet: 0,
+      loadsheet_pax: [],
 
       // FUNCTIONS
       updateProp: this.updateProp,
