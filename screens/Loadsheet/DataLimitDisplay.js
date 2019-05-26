@@ -5,6 +5,11 @@ import Style from "../../Style";
 import Theme from "../../Theme";
 
 const DataLimitDisplay = ({ label, data, limit }) => {
+  let backgroundColor;
+  if (limit) backgroundColor = "green";
+  if (limit && data > limit * 0.9 && data < limit) backgroundColor = "orange";
+  if (limit && data > limit) backgroundColor = "red";
+
   return (
     <View
       style={{
@@ -41,7 +46,8 @@ const DataLimitDisplay = ({ label, data, limit }) => {
             minHeight: 20,
             paddingHorizontal: 5,
             paddingVertical: 3,
-            minWidth: 120
+            minWidth: 120,
+            backgroundColor: backgroundColor
           }}
         >
           <Text
